@@ -2,14 +2,60 @@
     transition: 0.2s;
     user-select: none;
     height: 100vh;
+    overflow: hidden;
 
-    .img-wrapper {
-        width: fit-content;
-        user-select: none;
+    .circle {
+        position: relative;
+        border-radius: -50%;
+
         img {
-            -webkit-user-drag: none;
-            pointer-events: none;
-            user-select: none;
+            position: absolute;
+        }
+    }
+
+    .inner-circle,
+    .outer-circle {
+        pointer-events: none;
+    }
+
+    .inner-circle {
+        position: relative !important;
+        background-color: white;
+        margin: 5px 0px;
+
+        p {
+            position: absolute;
+        }
+
+        img {
+            max-width: 480px;
+        }
+
+        .white-circle {
+            background-color: white;
+            width: 485px;
+            height: 485px;
+            border-radius: 50%;
+            position: absolute;
+        }
+    }
+
+    .days-circle {
+        img {
+            // width: 100%;
+            max-width: 605px;
+        }
+    }
+
+    .months-circle {
+        img {
+            width: 780px;
+        }
+    }
+
+    .outer-circle {
+        img {
+            width: 925px;
         }
     }
 }

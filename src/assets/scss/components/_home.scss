@@ -3,6 +3,7 @@
     user-select: none;
     height: 100vh;
     overflow: hidden;
+    transition: 0.5s;
 
     .circle {
         position: relative;
@@ -21,10 +22,27 @@
     .inner-circle {
         position: relative !important;
         background-color: white;
-        margin: 5px 0px;
 
         p {
             position: absolute;
+            // padding: 28px 120px;
+            height: 75px;
+            width: 300px;
+            transition: 0.5s;
+            color: black;
+            font-size: 30px;
+            // animation: flash 0.4s 1 ease-in-out;
+
+            @keyframes flashh {
+                50% {
+                    background-color: #4c4c4b79;
+
+                }
+
+                // to {
+                //     background-color: #4c4c4b79;
+                // }
+            }
         }
 
         img {
@@ -42,8 +60,8 @@
 
     .days-circle {
         img {
-            // width: 100%;
             max-width: 605px;
+            margin: -30px;
         }
     }
 

@@ -13,12 +13,12 @@ export const Home = () => {
     const promptRef = useRef()
     const monthsAngleOptions = [360], daysAngleOptions = [360]
 
-    let daysAngle, currAngle2, daysAngleStart = 360, monthAngleStart = 360
+    let daysAngleStart = 360, monthAngleStart = 360
 
     for (var i = 0; i < 27; i++) {
         daysAngleOptions.push(daysAngleStart -= 12.8571428571)
     }
-    for (var i = 0; i < 11; i++) {
+    for (var j = 0; j < 11; j++) {
         monthsAngleOptions.push(monthAngleStart -= 30)
     }
     daysAngleOptions.push(0)
@@ -52,6 +52,8 @@ export const Home = () => {
                     }, 100);
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -66,10 +68,12 @@ export const Home = () => {
     }
 
     const findClosestNumber = (number, el) => {
+        let closestNumber
+        let smallestDifference
         switch (el) {
             case 'rotate':
-                var closestNumber = daysAngleOptions[0];
-                var smallestDifference = Math.abs(number - closestNumber);
+                closestNumber = daysAngleOptions[0];
+                smallestDifference = Math.abs(number - closestNumber);
 
                 for (let i = 1; i < daysAngleOptions.length; i++) {
                     const currentNumber = daysAngleOptions[i];
@@ -82,8 +86,8 @@ export const Home = () => {
                 }
                 break;
             case 'rotate2':
-                var closestNumber = monthsAngleOptions[0];
-                var smallestDifference = Math.abs(number - closestNumber);
+                closestNumber = monthsAngleOptions[0];
+                smallestDifference = Math.abs(number - closestNumber);
 
                 for (let i = 1; i < monthsAngleOptions.length; i++) {
                     const currentNumber = monthsAngleOptions[i];
@@ -94,6 +98,8 @@ export const Home = () => {
                         smallestDifference = difference;
                     }
                 }
+                break;
+            default:
                 break;
         }
         // if (!Array.isArray(daysAngleOptions) || daysAngleOptions.length === 0) {
@@ -115,20 +121,20 @@ export const Home = () => {
         return closestNumber;
     }
 
-    const checkOnCircle = (e) => {
-        const imageRect = daysCircleRef.current.getBoundingClientRect();
-        const centerX = imageRect.left + imageRect.width / 2;
-        const centerY = imageRect.top + imageRect.height / 2;
-        const radius = imageRect.width / 2;
+    // const checkOnCircle = (e) => {
+    //     const imageRect = daysCircleRef.current.getBoundingClientRect();
+    //     const centerX = imageRect.left + imageRect.width / 2;
+    //     const centerY = imageRect.top + imageRect.height / 2;
+    //     const radius = imageRect.width / 2;
 
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+    //     const mouseX = e.clientX;
+    //     const mouseY = e.clientY;
 
-        const distance = Math.sqrt((mouseX - centerX) ** 2 + (mouseY - centerY) ** 2);
+    //     const distance = Math.sqrt((mouseX - centerX) ** 2 + (mouseY - centerY) ** 2);
 
-        console.log(distance <= radius);
-        return distance <= radius;
-    }
+    //     console.log(distance <= radius);
+    //     return distance <= radius;
+    // }
 
     // const checkOnCircle = (e) => {
     //     console.log(e);

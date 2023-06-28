@@ -1,6 +1,19 @@
 .days {
+    box-sizing: border-box;
+
+    clip-path: 50%;
+
     img {
-        width: 150px;
-        transform: rotate(330deg);
+        box-sizing: border-box;
+
+        width: 300px;
+        background-color: red;
+        position: absolute;
+        top: 40%;
+        right: 50%;
+
+        clip-path: circle(50%);
     }
+
+    width: fit-content;
 }

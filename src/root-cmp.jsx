@@ -1,7 +1,8 @@
-// import { Tests } from "./components/tests";
+import { Tests } from "./components/tests";
 import { Home } from "./pages/home";
 
 function App() {
+
   return (
     // <Tests />
     <Home />

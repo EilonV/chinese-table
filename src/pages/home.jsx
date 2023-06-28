@@ -25,11 +25,12 @@ export const Home = () => {
     monthsAngleOptions.push(0)
 
     const fixAngle = (angle, el) => {
-        // console.log(findClosestNumber(getAngle(angle)));
-        console.log('EL', el);
+        console.log('IN fixAngle, angle:', angle);
+        // console.log('EL', el);
         switch (el) {
             case 'rotate':
                 if (daysCircleRef.current) {
+                    console.log('case rotate', findClosestNumber(getAngle(angle), el));
                     daysCircleRef.current.style.transform = `rotate(${findClosestNumber(getAngle(angle), el)}deg)`
                     daysCircleRef.current.style.transition = `0.5s`
                     promptRef.current.style.animation = 'flashh 0.4s 1 ease-in-out'
@@ -60,16 +61,25 @@ export const Home = () => {
     const getAngle = (angle) => {
         // takes string 'rotate(num deg) and breaks it to an int
         if (angle) {
-            const regex = /[.0-9]/g
+            const regex = /[-.0-9]/g
             let newAngle = angle.match(regex)
-            return newAngle.join('')
+            let newIntAngle = parseFloat(newAngle.join(''))
+
+            if (newIntAngle < 0) {
+                console.log('returning:', newIntAngle + 360);
+                return newIntAngle + 360;
+            }
+            else {
+                console.log('returning:', newIntAngle);
+                return newIntAngle
+            }
         }
-        else return 'IDK'
     }
 
     const findClosestNumber = (number, el) => {
         let closestNumber
         let smallestDifference
+
         switch (el) {
             case 'rotate':
                 closestNumber = daysAngleOptions[0];
@@ -141,6 +151,7 @@ export const Home = () => {
     //     console.log('WE ARE HERE @@@@@@@@@@@@@@@@@@@@@@@@@@@');
     // }
 
+    // ROTATION FUNCTIONS @@@@ @@@@ @@@@
     setTimeout(() => {
         //ROTATE2
         (function () {
@@ -177,6 +188,9 @@ export const Home = () => {
 
             start = function (e) {
                 e.preventDefault();
+                if (daysCircleRef.current) {
+                    daysCircleRef.current.style.pointerEvents = "none"
+                }
                 var bb = this.getBoundingClientRect(),
                     t = bb.top,
                     l = bb.left,
@@ -201,14 +215,23 @@ export const Home = () => {
                     d = R2D * Math.atan2(y, x);
                 rotation = d - startAngle;
 
-                // over 360 / under 0 calculation
+                // over 360 calculation
                 var newAngle = (angle + rotation) % 360
+                if (newAngle < 0) newAngle += 360;
+                console.log(newAngle);
                 return (rot.style.transform = "rotate(" + (newAngle) + "deg)");
             };
 
             stop = function () {
                 angle += rotation;
+                if (daysCircleRef.current) {
+                    if (daysCircleRef.current.style.pointerEvents === "none") {
+                        daysCircleRef.current.style.pointerEvents = "auto"
+                    }
+
+                }
                 return (active = false);
+
             };
 
             init();
@@ -241,8 +264,6 @@ export const Home = () => {
                 $(rot).bind("mouseup", function (event) {
                     event.preventDefault();
                     stop(event);
-                    console.log('ROTATE MOUSE UP');
-                    console.log('ROTATE1 ELEMENT', event.target);
                     fixAngle(event.target.style.transform, 'rotate')
                 });
             };
@@ -275,6 +296,8 @@ export const Home = () => {
 
                 // over 360 / under 0 calculation
                 var newAngle = (angle + rotation) % 360
+                if (newAngle < 0) newAngle += 360;
+                console.log(newAngle);
                 return (rot.style.transform = "rotate(" + newAngle + "deg)");
             };
 
@@ -292,7 +315,9 @@ export const Home = () => {
             <img src={outerCircle} alt="outer circle" />
         </div>
         <div className="circle months-circle flex align-center justify-center" >
-            <img src={monthsCircle} alt="" id="rotate2" ref={monthsCircleRef} />
+            <div className='months-wrapper flex align-center justify-center'  >
+                <img src={monthsCircle} alt="" id="rotate2" ref={monthsCircleRef} />
+            </div>
         </div>
         <div className="circle box days-circle flex align-center justify-center">
             <img src={daysCircle} alt="days circle" id="rotate" ref={daysCircleRef} />

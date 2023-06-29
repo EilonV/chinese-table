@@ -4,6 +4,17 @@
     height: 100vh;
     overflow: hidden;
     transition: 0.5s;
+    opacity: 0;
+    transform: translateY(-50%);
+    animation: start 1.5s 1 forwards;
+
+    @keyframes start {
+        to {
+            opacity: 1;
+            transform: translateY(0%);
+
+        }
+    }
 
     .circle {
         position: relative;

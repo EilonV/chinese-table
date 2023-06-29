@@ -132,15 +132,15 @@ export const Home = () => {
         else {
             day = result
             // console.log(day);
-            // if (day === 28)
-            //     day = 0
+            if (day === 28)
+                day = 0
         }
 
-        // console.log(`a/m: ${day + 1}/${month + 1}`);
+        // console.log(`a/m: ${day}/${month}`);
         // console.log('boy/girl: ', chart[day][month]);
 
         if (chart[day][month] === 'G') {
-            console.log('GIRL');
+            // console.log('GIRL');
             boy.classList.remove('active')
             girl.classList.add('active');
         }

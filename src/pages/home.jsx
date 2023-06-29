@@ -49,9 +49,14 @@ export const Home = () => {
                 if (monthsCircleRef.current) {
                     monthsCircleRef.current.style.transform = `rotate(${findClosestNumber(getAngle(angle), el)}deg)`
                     monthsCircleRef.current.style.transition = `0.5s`
+                    promptRef.current.style.animation = 'flashh 0.4s 1 ease-in-out'
                     setTimeout(() => {
                         monthsCircleRef.current.style.transition = `0s`
                     }, 100);
+                    setTimeout(() => {
+                        promptRef.current.style.animation = 'none'
+
+                    }, 300);
                 }
                 break;
             default:

@@ -59,6 +59,7 @@
             transform: translateY(-50%);
             transition: 0.5s;
             font-family: fbDiploma;
+            font-size: 38px;
 
             &.active {
                 animation: text-show 1s 1 ease-in-out forwards;
@@ -73,11 +74,11 @@
         }
 
         .girl {
-            color: palevioletred;
+            color: $girl-pink;
         }
 
         .boy {
-            color: rgb(112, 193, 216);
+            color: $boy-blue;
         }
 
 

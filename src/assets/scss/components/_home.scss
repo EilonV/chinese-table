@@ -25,7 +25,7 @@
         position: relative !important;
         background-color: white;
 
-        p {
+        .prompt {
             position: absolute;
             // padding: 28px 120px;
             height: 75px;
@@ -33,19 +33,43 @@
             transition: 0.5s;
             color: black;
             font-size: 30px;
-            // animation: flash 0.4s 1 ease-in-out;
 
             @keyframes flashh {
                 50% {
                     background-color: #4c4c4b79;
-
                 }
-
-                // to {
-                //     background-color: #4c4c4b79;
-                // }
             }
         }
+
+        .girl,
+        .boy {
+            position: inherit;
+            opacity: 0;
+            transform: translateY(-50%);
+            transition: 0.5s;
+            font-family: fbDiploma;
+
+            &.active {
+                animation: text-show 1s 1 ease-in-out forwards;
+
+                @keyframes text-show {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+
+        .girl {
+            color: palevioletred;
+        }
+
+        .boy {
+            color: rgb(112, 193, 216);
+        }
+
+
 
         img {
             max-width: 480px;

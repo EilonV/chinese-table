@@ -15,6 +15,8 @@ export const Home = () => {
 
     let day = 0, month = 0
     let daysAngleStart = 360, monthAngleStart = 360
+    let intervalStart = false
+    let interval
 
     for (var i = 0; i < 27; i++) {
         daysAngleOptions.push(daysAngleStart -= 12.8571428571)
@@ -153,6 +155,35 @@ export const Home = () => {
             girl.classList.remove('active')
             boy.classList.add('active');
         }
+    }
+
+    const startInterval = () => {
+        if (!intervalStart) {
+            interval = setInterval(() => {
+                console.log('interval on');
+                if (daysCircleRef.current) {
+                    daysCircleRef.current.style.transition = '0.5s'
+                    daysCircleRef.current.style.transform = 'rotate(0deg)'
+                    setTimeout(() => {
+                        daysCircleRef.current.style.transition = '0s'
+                    }, 100);
+                }
+                if (monthsCircleRef.current) {
+                    monthsCircleRef.current.style.transition = '0.5s'
+                    monthsCircleRef.current.style.transform = 'rotate(0deg)'
+                    setTimeout(() => {
+                        monthsCircleRef.current.style.transition = '0s'
+                    }, 100);
+                }
+            }, 60000);
+        }
+        intervalStart = true
+    }
+
+    const resetInterval = () => {
+        clearInterval(interval)
+        intervalStart = false
+        startInterval()
     }
 
     // ROTATION FUNCTIONS @@@@ @@@@ @@@@
@@ -313,7 +344,7 @@ export const Home = () => {
             init();
         }.call(this));
     }, 100);
-    return <section className='home flex align-center justify-center'>
+    return <section className='home flex align-center justify-center' onClick={resetInterval}>
         <div className='circle-wrapper'>
             <div className='circle outer-circle flex align-center justify-center' draggable={false}>
                 <img src={outerCircle} alt="outer circle" />
@@ -332,7 +363,9 @@ export const Home = () => {
                 <div ref={promptRef} className='prompt flex align-center justify-center'>
                     <p className='girl flex align-center justify-center'>בת</p>
                     <p className='boy flex align-center justify-center'>בן</p>
+
                 </div>
+
             </div>
         </div>
 

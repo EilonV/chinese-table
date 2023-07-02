@@ -1,8 +1,8 @@
 import $ from 'jquery'
-import innerCircle from '../assets/pics/inner-circle.png'
-import outerCircle from '../assets/pics/outer-circle.png'
-import daysCircle from '../assets/pics/days-circle.png'
-import monthsCircle from '../assets/pics/months-circle.png'
+import innerCircle from '../assets/pics/inner.png'
+import outerCircle from '../assets/pics/outer.png'
+import daysCircle from '../assets/pics/age.png'
+import monthsCircle from '../assets/pics/months.png'
 import { chart } from '../data/chart'
 import { useRef } from 'react'
 
@@ -314,24 +314,27 @@ export const Home = () => {
         }.call(this));
     }, 100);
     return <section className='home flex align-center justify-center'>
-        <div className='circle outer-circle  flex align-center justify-center' draggable={false}>
-            <img src={outerCircle} alt="outer circle" />
-        </div>
-        <div className="circle months-circle flex align-center justify-center" >
-            <div className='months-wrapper flex align-center justify-center'  >
-                <img src={monthsCircle} alt="" id="rotate2" ref={monthsCircleRef} />
+        <div className='circle-wrapper'>
+            <div className='circle outer-circle flex align-center justify-center' draggable={false}>
+                <img src={outerCircle} alt="outer circle" />
+            </div>
+            <div className="circle months-circle flex align-center justify-center" >
+                <div className='months-wrapper flex align-center justify-center'  >
+                    <img src={monthsCircle} alt="" id="rotate2" ref={monthsCircleRef} />
+                </div>
+            </div>
+            <div className="circle box days-circle flex align-center justify-center">
+                <img src={daysCircle} alt="days circle" id="rotate" ref={daysCircleRef} />
+            </div>
+            <div className='circle inner-circle flex align-center justify-center' draggable={false}>
+                <img src={innerCircle} alt="inner circle" />
+                {/* <div className='white-circle' /> */}
+                <div ref={promptRef} className='prompt flex align-center justify-center'>
+                    <p className='girl flex align-center justify-center'>בת</p>
+                    <p className='boy flex align-center justify-center'>בן</p>
+                </div>
             </div>
         </div>
-        <div className="circle box days-circle flex align-center justify-center">
-            <img src={daysCircle} alt="days circle" id="rotate" ref={daysCircleRef} />
-        </div>
-        <div className='circle inner-circle flex align-center justify-center' draggable={false}>
-            <img src={innerCircle} alt="inner circle" />
-            {/* <div className='white-circle' /> */}
-            <div ref={promptRef} className='prompt flex align-center justify-center'>
-                <p className='girl flex align-center justify-center'>בת</p>
-                <p className='boy flex align-center justify-center'>בן</p>
-            </div>
-        </div>
+
     </section>
 }
